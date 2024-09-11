@@ -39,6 +39,7 @@ int apple[2] = {5, 5};  // Apple position
 int score = 0;
 int level = 1;
 float speed = 500;  // Initial speed (milliseconds between moves)
+const float MIN_SPEED = 50;  // Minimum speed limit
 unsigned long lastMove = 0;
 bool gameOver = false;
 unsigned long gameOverTime = 0;  // Time when game over occurred
@@ -197,7 +198,7 @@ void moveSnake() {
   if (snake[0].x == apple[0] && snake[0].y == apple[1]) {
     snake_length++;  // Increase snake length
     score += 1;  // Increase score
-    speed = max(10.0f, speed / 5);  // Increase the speed by a factor of 5
+    speed = max(MIN_SPEED, speed / 5);  // Increase the speed by a factor of 5, but not below MIN_SPEED
     newApple();  // Generate a new apple
   }
 }
